@@ -1,0 +1,1664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repurpose — Turn Articles Into Social Gold</title>
+    <meta name="description" content="Paste your long-form article, pick your platforms and tone, and get ready-to-post social content in seconds.">
+    <link rel="canonical" href="https://energyselect.au/repurpose">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://energyselect.au/repurpose">
+    <meta property="og:title" content="Repurpose — Turn Articles Into Social Gold">
+    <meta property="og:description" content="Paste your long-form article, pick your platforms and tone, and get ready-to-post social content in seconds.">
+    <meta property="og:site_name" content="EnergySelect">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Repurpose — Turn Articles Into Social Gold">
+    <meta name="twitter:description" content="Paste your long-form article, pick your platforms and tone, and get ready-to-post social content in seconds.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+/* ============================================================
+   DESIGN TOKENS
+   The palette is warm-cool tension: amber/coral energy meets
+   violet depth. Like sunrise hitting a creative workspace.
+   ============================================================ */
+:root {
+    /* --- Primary: warm coral-to-amber energy --- */
+    --coral-500: #F97066;
+    --coral-400: #FCA5A1;
+    --coral-300: #FECDD3;
+    --amber-500: #F59E0B;
+    --amber-400: #FBBF24;
+    --amber-300: #FDE68A;
+
+    /* --- Accent: violet creative depth --- */
+    --violet-600: #7C3AED;
+    --violet-500: #8B5CF6;
+    --violet-400: #A78BFA;
+    --violet-300: #C4B5FD;
+    --violet-200: #DDD6FE;
+    --violet-100: #EDE9FE;
+    --violet-50: #F5F3FF;
+
+    /* --- Surfaces --- */
+    --surface-0: #FFFBF7;
+    --surface-1: #FFF7F0;
+    --surface-2: #FFF1E6;
+    --surface-card: #FFFFFF;
+    --surface-elevated: #FFFFFF;
+
+    /* --- Ink --- */
+    --ink-900: #1C1127;
+    --ink-800: #2D2339;
+    --ink-700: #453A54;
+    --ink-500: #6B5E7B;
+    --ink-400: #8E82A0;
+    --ink-300: #B8AFCA;
+    --ink-200: #D8D3E3;
+    --ink-100: #EEEAF4;
+
+    /* --- Functional --- */
+    --success: #10B981;
+    --info: #3B82F6;
+
+    /* --- Platform colors --- */
+    --twitter: #1DA1F2;
+    --linkedin: #0A66C2;
+    --threads: #000000;
+    --instagram: #E1306C;
+    --mastodon: #6364FF;
+
+    /* --- Typography --- */
+    --font-display: 'Space Grotesk', -apple-system, sans-serif;
+    --font-body: 'Inter', -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    /* --- Sizing --- */
+    --text-xs: 0.75rem;
+    --text-sm: 0.8125rem;
+    --text-base: 0.9375rem;
+    --text-lg: 1.125rem;
+    --text-xl: 1.3125rem;
+    --text-2xl: 1.75rem;
+    --text-3xl: 2.25rem;
+    --text-4xl: 3rem;
+    --text-5xl: 3.75rem;
+
+    /* --- Spacing --- */
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 20px;
+    --space-6: 24px;
+    --space-8: 32px;
+    --space-10: 40px;
+    --space-12: 48px;
+    --space-16: 64px;
+    --space-20: 80px;
+
+    /* --- Radius --- */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 20px;
+    --radius-2xl: 24px;
+    --radius-full: 9999px;
+
+    /* --- Shadows --- */
+    --shadow-sm: 0 1px 2px rgba(28, 17, 39, 0.04);
+    --shadow-md: 0 4px 12px rgba(28, 17, 39, 0.06);
+    --shadow-lg: 0 8px 30px rgba(28, 17, 39, 0.08);
+    --shadow-xl: 0 16px 48px rgba(28, 17, 39, 0.1);
+    --shadow-glow-coral: 0 0 0 0 rgba(249, 112, 102, 0);
+    --shadow-glow-violet: 0 0 0 0 rgba(139, 92, 246, 0);
+
+    /* --- Motion --- */
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --duration-fast: 150ms;
+    --duration-normal: 250ms;
+    --duration-slow: 400ms;
+
+    /* --- Layout --- */
+    --max-w: 1080px;
+    --nav-h: 60px;
+}
+
+/* ---- RESET ---- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+body {
+    font-family: var(--font-body);
+    font-weight: 400;
+    color: var(--ink-800);
+    background: var(--surface-0);
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+input, textarea, select { font-family: inherit; }
+::selection { background: var(--violet-200); color: var(--ink-900); }
+
+/* ---- BACKGROUND TEXTURE ---- */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background:
+        radial-gradient(ellipse 80% 60% at 10% 10%, rgba(249, 112, 102, 0.06) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 50% at 90% 80%, rgba(139, 92, 246, 0.05) 0%, transparent 50%),
+        radial-gradient(ellipse 50% 40% at 50% 50%, rgba(251, 191, 36, 0.03) 0%, transparent 50%);
+}
+
+/* Dot grid - like notebook paper */
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.3;
+    background-image: radial-gradient(circle, var(--ink-200) 0.5px, transparent 0.5px);
+    background-size: 24px 24px;
+}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+.nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: var(--nav-h);
+    background: rgba(255, 251, 247, 0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(28, 17, 39, 0.05);
+}
+.nav__inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 var(--space-6);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.nav__brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--text-lg);
+    color: var(--ink-900);
+    position: relative;
+    z-index: 1;
+}
+.nav__logo-mark {
+    width: 34px;
+    height: 34px;
+    border-radius: var(--radius-sm);
+    background: linear-gradient(135deg, var(--coral-500), var(--violet-500));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 800;
+    font-size: var(--text-base);
+    transition: transform var(--duration-normal) var(--ease-spring);
+}
+.nav__logo-mark:hover {
+    transform: rotate(-6deg) scale(1.05);
+}
+.nav__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    position: relative;
+    z-index: 1;
+}
+.nav__link {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--ink-500);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-sm);
+    transition: all var(--duration-fast);
+}
+.nav__link:hover {
+    color: var(--ink-900);
+    background: var(--ink-100);
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: var(--text-sm);
+    border-radius: var(--radius-full);
+    padding: 10px 22px;
+    transition: all var(--duration-normal) var(--ease-out);
+    white-space: nowrap;
+    cursor: pointer;
+    border: none;
+    position: relative;
+    overflow: hidden;
+}
+.btn--primary {
+    background: linear-gradient(135deg, var(--coral-500), var(--violet-500));
+    color: white;
+    box-shadow: var(--shadow-md), 0 0 0 0 rgba(249, 112, 102, 0.3);
+}
+.btn--primary:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-lg), 0 4px 20px rgba(249, 112, 102, 0.3);
+}
+.btn--primary:active {
+    transform: translateY(0);
+}
+.btn--secondary {
+    background: var(--surface-card);
+    color: var(--ink-800);
+    border: 1.5px solid var(--ink-200);
+    box-shadow: var(--shadow-sm);
+}
+.btn--secondary:hover {
+    border-color: var(--violet-300);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+}
+.btn--ghost {
+    background: transparent;
+    color: var(--ink-500);
+    padding: 8px 16px;
+}
+.btn--ghost:hover {
+    background: var(--ink-100);
+    color: var(--ink-800);
+}
+.btn--large {
+    padding: 14px 32px;
+    font-size: var(--text-base);
+    gap: var(--space-3);
+}
+.btn--full {
+    width: 100%;
+    justify-content: center;
+}
+
+/* Shimmer animation on primary button */
+.btn--primary::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+    transition: none;
+}
+.btn--primary:hover::after {
+    animation: shimmer 0.6s ease-out;
+}
+@keyframes shimmer {
+    to { left: 120%; }
+}
+
+/* ============================================================
+   HERO SECTION
+   ============================================================ */
+.hero {
+    position: relative;
+    z-index: 1;
+    padding: var(--space-20) var(--space-6) var(--space-16);
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto;
+}
+.hero__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: 6px 14px 6px 8px;
+    border-radius: var(--radius-full);
+    background: var(--surface-card);
+    border: 1.5px solid var(--ink-100);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    color: var(--ink-500);
+    margin-bottom: var(--space-6);
+    box-shadow: var(--shadow-sm);
+    animation: fadeInUp 0.6s var(--ease-out) both;
+}
+.hero__badge-emoji {
+    font-size: 14px;
+    animation: wave 2s ease-in-out infinite;
+}
+@keyframes wave {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(12deg); }
+    75% { transform: rotate(-8deg); }
+}
+.hero__title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(var(--text-3xl), 5.5vw, var(--text-5xl));
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    color: var(--ink-900);
+    margin-bottom: var(--space-5);
+    animation: fadeInUp 0.6s var(--ease-out) 0.1s both;
+}
+.hero__title-accent {
+    background: linear-gradient(135deg, var(--coral-500), var(--violet-500));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.hero__subtitle {
+    font-size: clamp(var(--text-base), 1.3vw, var(--text-lg));
+    color: var(--ink-500);
+    max-width: 520px;
+    margin: 0 auto var(--space-8);
+    line-height: 1.7;
+    animation: fadeInUp 0.6s var(--ease-out) 0.2s both;
+}
+.hero__cta {
+    animation: fadeInUp 0.6s var(--ease-out) 0.3s both;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   MAIN WORKSPACE — the creative canvas
+   ============================================================ */
+.workspace {
+    position: relative;
+    z-index: 1;
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 var(--space-6) var(--space-20);
+}
+.workspace__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+    align-items: start;
+}
+
+/* ---- INPUT PANEL ---- */
+.panel {
+    background: var(--surface-card);
+    border: 1.5px solid var(--ink-100);
+    border-radius: var(--radius-xl);
+    padding: var(--space-8);
+    box-shadow: var(--shadow-md);
+    position: sticky;
+    top: calc(var(--nav-h) + var(--space-6));
+    transition: border-color var(--duration-normal), box-shadow var(--duration-normal);
+}
+.panel:focus-within {
+    border-color: var(--violet-300);
+    box-shadow: var(--shadow-lg), 0 0 0 4px rgba(139, 92, 246, 0.06);
+}
+.panel__header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-6);
+}
+.panel__icon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+}
+.panel__icon--input {
+    background: linear-gradient(135deg, var(--amber-300), var(--coral-300));
+}
+.panel__icon--output {
+    background: linear-gradient(135deg, var(--violet-300), var(--violet-200));
+}
+.panel__title {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 700;
+    color: var(--ink-900);
+    letter-spacing: -0.02em;
+}
+.panel__subtitle {
+    font-size: var(--text-xs);
+    color: var(--ink-400);
+    margin-top: 1px;
+}
+
+/* ---- FORM ELEMENTS ---- */
+.form-group {
+    margin-bottom: var(--space-5);
+}
+.form-label {
+    display: block;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--ink-700);
+    margin-bottom: var(--space-2);
+    letter-spacing: -0.01em;
+}
+.form-label__hint {
+    font-weight: 400;
+    color: var(--ink-400);
+    margin-left: var(--space-1);
+}
+
+/* Textarea */
+.textarea-wrap {
+    position: relative;
+}
+.form-textarea {
+    width: 100%;
+    min-height: 180px;
+    padding: var(--space-4);
+    background: var(--surface-0);
+    border: 1.5px solid var(--ink-100);
+    border-radius: var(--radius-md);
+    font-size: var(--text-base);
+    color: var(--ink-900);
+    line-height: 1.7;
+    resize: vertical;
+    outline: none;
+    transition: border-color var(--duration-normal), box-shadow var(--duration-normal), background var(--duration-normal);
+}
+.form-textarea::placeholder {
+    color: var(--ink-300);
+}
+.form-textarea:focus {
+    border-color: var(--violet-400);
+    background: white;
+    box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.06);
+}
+.textarea-wrap__count {
+    position: absolute;
+    bottom: var(--space-3);
+    right: var(--space-3);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--ink-300);
+    pointer-events: none;
+    transition: color var(--duration-fast);
+}
+.textarea-wrap__count--warn { color: var(--amber-500); }
+.textarea-wrap__count--over { color: var(--coral-500); }
+
+/* Upload zone */
+.upload-zone {
+    margin-top: var(--space-3);
+    padding: var(--space-5);
+    border: 2px dashed var(--ink-200);
+    border-radius: var(--radius-md);
+    text-align: center;
+    cursor: pointer;
+    transition: all var(--duration-normal);
+    background: transparent;
+}
+.upload-zone:hover,
+.upload-zone.is-dragging {
+    border-color: var(--violet-400);
+    background: var(--violet-50);
+}
+.upload-zone__icon {
+    font-size: 24px;
+    margin-bottom: var(--space-2);
+    opacity: 0.6;
+}
+.upload-zone__text {
+    font-size: var(--text-sm);
+    color: var(--ink-400);
+}
+.upload-zone__text strong {
+    color: var(--violet-500);
+    font-weight: 600;
+}
+.upload-zone__input {
+    display: none;
+}
+
+/* Divider */
+.form-divider {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin: var(--space-3) 0;
+    font-size: var(--text-xs);
+    color: var(--ink-300);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+}
+.form-divider::before,
+.form-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--ink-100);
+}
+
+/* Platform chips */
+.chip-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+}
+.chip {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: 8px 16px;
+    border-radius: var(--radius-full);
+    border: 1.5px solid var(--ink-200);
+    background: var(--surface-card);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--ink-700);
+    cursor: pointer;
+    transition: all var(--duration-normal) var(--ease-out);
+    user-select: none;
+}
+.chip:hover {
+    border-color: var(--ink-300);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+}
+.chip.is-active {
+    border-color: transparent;
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+.chip.is-active[data-platform="twitter"] { background: var(--twitter); }
+.chip.is-active[data-platform="linkedin"] { background: var(--linkedin); }
+.chip.is-active[data-platform="threads"] { background: var(--threads); }
+.chip.is-active[data-platform="instagram"] { background: var(--instagram); }
+.chip.is-active[data-platform="mastodon"] { background: var(--mastodon); }
+
+.chip__icon {
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.chip input {
+    display: none;
+}
+.chip__check {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    border: 1.5px solid var(--ink-200);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--duration-fast);
+    flex-shrink: 0;
+}
+.chip.is-active .chip__check {
+    background: rgba(255,255,255,0.3);
+    border-color: rgba(255,255,255,0.5);
+}
+.chip.is-active .chip__check svg {
+    opacity: 1;
+}
+.chip__check svg {
+    opacity: 0;
+    transition: opacity var(--duration-fast);
+}
+
+/* Tone selector */
+.tone-group {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-2);
+}
+.tone-option {
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-md);
+    border: 1.5px solid var(--ink-100);
+    background: var(--surface-card);
+    text-align: center;
+    cursor: pointer;
+    transition: all var(--duration-normal) var(--ease-out);
+    user-select: none;
+}
+.tone-option:hover {
+    border-color: var(--ink-200);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+}
+.tone-option.is-active {
+    border-color: var(--violet-400);
+    background: var(--violet-50);
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.08);
+}
+.tone-option input { display: none; }
+.tone-option__emoji {
+    font-size: 20px;
+    display: block;
+    margin-bottom: var(--space-1);
+    transition: transform var(--duration-normal) var(--ease-spring);
+}
+.tone-option:hover .tone-option__emoji,
+.tone-option.is-active .tone-option__emoji {
+    transform: scale(1.2);
+}
+.tone-option__label {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    color: var(--ink-700);
+    display: block;
+}
+.tone-option__desc {
+    font-size: 10px;
+    color: var(--ink-400);
+    margin-top: 1px;
+}
+
+/* Submit section */
+.form-submit {
+    margin-top: var(--space-6);
+}
+.form-submit .btn {
+    font-size: var(--text-base);
+    padding: 14px 28px;
+}
+.btn__spinner {
+    display: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+}
+.btn.is-loading .btn__text { opacity: 0.5; }
+.btn.is-loading .btn__spinner { display: block; }
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ============================================================
+   OUTPUT PANEL
+   ============================================================ */
+.output-panel {
+    position: relative;
+}
+.output-panel .panel {
+    position: relative;
+    top: auto;
+    padding: var(--space-6);
+}
+
+/* Empty state */
+.output-empty {
+    text-align: center;
+    padding: var(--space-16) var(--space-8);
+}
+.output-empty__illustration {
+    font-size: 48px;
+    margin-bottom: var(--space-4);
+    opacity: 0.7;
+    animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+.output-empty__title {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: var(--ink-700);
+    margin-bottom: var(--space-2);
+}
+.output-empty__desc {
+    font-size: var(--text-sm);
+    color: var(--ink-400);
+    max-width: 280px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Generated output cards */
+.output-cards {
+    display: none;
+    flex-direction: column;
+    gap: var(--space-5);
+}
+.output-cards.is-visible {
+    display: flex;
+}
+
+/* Individual post card */
+.post-card {
+    border-radius: var(--radius-lg);
+    border: 1.5px solid var(--ink-100);
+    overflow: hidden;
+    background: var(--surface-card);
+    transition: transform var(--duration-normal) var(--ease-out), box-shadow var(--duration-normal);
+    animation: cardAppear 0.5s var(--ease-out) both;
+}
+.post-card:nth-child(2) { animation-delay: 0.1s; }
+.post-card:nth-child(3) { animation-delay: 0.2s; }
+.post-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+@keyframes cardAppear {
+    from { opacity: 0; transform: translateY(16px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.post-card__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--ink-100);
+}
+.post-card__platform {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    font-weight: 600;
+}
+.post-card__platform-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+.post-card__platform-dot--twitter { background: var(--twitter); }
+.post-card__platform-dot--linkedin { background: var(--linkedin); }
+.post-card__platform-dot--threads { background: var(--threads); }
+.post-card__platform-dot--instagram { background: var(--instagram); }
+.post-card__platform-dot--mastodon { background: var(--mastodon); }
+
+.post-card__actions {
+    display: flex;
+    gap: var(--space-1);
+}
+.post-card__action {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink-400);
+    transition: all var(--duration-fast);
+}
+.post-card__action:hover {
+    background: var(--ink-100);
+    color: var(--ink-700);
+}
+.post-card__action.is-copied {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--success);
+}
+
+.post-card__body {
+    padding: var(--space-4) var(--space-4) var(--space-3);
+}
+.post-card__content {
+    font-size: var(--text-base);
+    color: var(--ink-800);
+    line-height: 1.7;
+    white-space: pre-wrap;
+}
+.post-card__meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-2) var(--space-4) var(--space-3);
+}
+.post-card__char-count {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--ink-300);
+}
+.post-card__char-count--warn { color: var(--amber-500); }
+.post-card__tone-tag {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+    background: var(--violet-100);
+    color: var(--violet-600);
+}
+
+/* ============================================================
+   LOADING STATE
+   ============================================================ */
+.output-loading {
+    display: none;
+    text-align: center;
+    padding: var(--space-12) var(--space-8);
+}
+.output-loading.is-visible { display: block; }
+.loading-dots {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-2);
+    margin-bottom: var(--space-4);
+}
+.loading-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    animation: loadingBounce 1.4s ease-in-out infinite;
+}
+.loading-dot:nth-child(1) { background: var(--coral-500); animation-delay: 0s; }
+.loading-dot:nth-child(2) { background: var(--amber-400); animation-delay: 0.16s; }
+.loading-dot:nth-child(3) { background: var(--violet-500); animation-delay: 0.32s; }
+
+@keyframes loadingBounce {
+    0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+    40% { transform: scale(1); opacity: 1; }
+}
+.loading-text {
+    font-size: var(--text-sm);
+    color: var(--ink-400);
+    font-weight: 500;
+}
+
+/* ============================================================
+   FEATURES / TRUST STRIP
+   ============================================================ */
+.features {
+    position: relative;
+    z-index: 1;
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: var(--space-16) var(--space-6) var(--space-20);
+}
+.features__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
+}
+.feature {
+    text-align: center;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    border: 1.5px solid var(--ink-100);
+    background: var(--surface-card);
+    transition: all var(--duration-normal) var(--ease-out);
+}
+.feature:hover {
+    border-color: var(--violet-200);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+}
+.feature__icon {
+    font-size: 28px;
+    margin-bottom: var(--space-3);
+    display: inline-block;
+    transition: transform var(--duration-normal) var(--ease-spring);
+}
+.feature:hover .feature__icon {
+    transform: scale(1.15) rotate(-3deg);
+}
+.feature__title {
+    font-family: var(--font-display);
+    font-size: var(--text-base);
+    font-weight: 600;
+    color: var(--ink-900);
+    margin-bottom: var(--space-2);
+}
+.feature__desc {
+    font-size: var(--text-sm);
+    color: var(--ink-400);
+    line-height: 1.6;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: var(--space-8) var(--space-6);
+    border-top: 1px solid var(--ink-100);
+}
+.footer__text {
+    font-size: var(--text-xs);
+    color: var(--ink-300);
+}
+.footer__heart {
+    color: var(--coral-500);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 860px) {
+    .workspace__grid {
+        grid-template-columns: 1fr;
+    }
+    .panel {
+        position: static;
+    }
+    .features__grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+}
+@media (max-width: 600px) {
+    .hero {
+        padding: var(--space-12) var(--space-5) var(--space-10);
+    }
+    .hero__title {
+        font-size: var(--text-2xl);
+    }
+    .panel {
+        padding: var(--space-5);
+    }
+    .tone-group {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .nav__link { display: none; }
+}
+
+/* ============================================================
+   CONFETTI BURST on generate
+   ============================================================ */
+.confetti-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 200;
+}
+.confetti {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    opacity: 0;
+}
+
+/* ============================================================
+   COPY TOAST
+   ============================================================ */
+.toast {
+    position: fixed;
+    bottom: var(--space-8);
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--ink-900);
+    color: white;
+    padding: var(--space-3) var(--space-5);
+    border-radius: var(--radius-full);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    box-shadow: var(--shadow-xl);
+    opacity: 0;
+    transition: all var(--duration-normal) var(--ease-out);
+    z-index: 300;
+    pointer-events: none;
+}
+.toast.is-visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* ============================================================
+   SUBTLE ANIMATIONS
+   ============================================================ */
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Typing cursor on textarea placeholder */
+.form-textarea:not(:focus):placeholder-shown {
+    animation: cursorBlink 1.2s steps(2) infinite;
+}
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav class="nav">
+        <div class="nav__inner">
+            <a href="#" class="nav__brand">
+                <div class="nav__logo-mark">R</div>
+                Repurpose
+            </a>
+            <div class="nav__actions">
+                <a href="#workspace" class="nav__link">Create</a>
+                <a href="#features" class="nav__link">Features</a>
+                <button class="btn btn--primary btn--small">Sign Up Free</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero__badge">
+            <span class="hero__badge-emoji">&#9997;&#65039;</span>
+            Your creative co-pilot for social content
+        </div>
+        <h1 class="hero__title">
+            One article.<br>
+            <span class="hero__title-accent">Endless reach.</span>
+        </h1>
+        <p class="hero__subtitle">
+            Paste your long-form content, pick your platforms, set the vibe &mdash; and watch your ideas multiply into scroll-stopping social posts.
+        </p>
+        <div class="hero__cta">
+            <a href="#workspace" class="btn btn--primary btn--large">
+                Start Repurposing
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- WORKSPACE -->
+    <div class="workspace" id="workspace">
+        <div class="workspace__grid">
+
+            <!-- LEFT: Input Panel -->
+            <div class="input-panel">
+                <div class="panel">
+                    <div class="panel__header">
+                        <div class="panel__icon panel__icon--input">&#128221;</div>
+                        <div>
+                            <div class="panel__title">Your Content</div>
+                            <div class="panel__subtitle">Paste an article or upload a file</div>
+                        </div>
+                    </div>
+
+                    <form id="repurposeForm">
+                        <!-- Article Input -->
+                        <div class="form-group">
+                            <label class="form-label">
+                                Article Text
+                                <span class="form-label__hint">(paste or type)</span>
+                            </label>
+                            <div class="textarea-wrap">
+                                <textarea
+                                    class="form-textarea"
+                                    id="articleInput"
+                                    placeholder="Paste your article, blog post, newsletter, or any long-form content here..."
+                                    maxlength="25000"
+                                ></textarea>
+                                <span class="textarea-wrap__count" id="charCount">0 / 25,000</span>
+                            </div>
+                        </div>
+
+                        <div class="form-divider">or</div>
+
+                        <!-- File Upload -->
+                        <div class="form-group">
+                            <div class="upload-zone" id="uploadZone">
+                                <div class="upload-zone__icon">&#128196;</div>
+                                <div class="upload-zone__text">
+                                    <strong>Click to upload</strong> or drag and drop<br>
+                                    .txt, .md, .doc files up to 5MB
+                                </div>
+                                <input type="file" class="upload-zone__input" id="fileInput" accept=".txt,.md,.doc,.docx">
+                            </div>
+                        </div>
+
+                        <!-- Platform Selection -->
+                        <div class="form-group">
+                            <label class="form-label">Platforms</label>
+                            <div class="chip-group" id="platformGroup">
+                                <div class="chip" data-platform="twitter">
+                                    <input type="checkbox" name="platform" value="twitter">
+                                    <span class="chip__check">
+                                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                                    </span>
+                                    <svg class="chip__icon" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                    X (Twitter)
+                                </div>
+                                <div class="chip" data-platform="linkedin">
+                                    <input type="checkbox" name="platform" value="linkedin">
+                                    <span class="chip__check">
+                                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                                    </span>
+                                    <svg class="chip__icon" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                                    LinkedIn
+                                </div>
+                                <div class="chip" data-platform="threads">
+                                    <input type="checkbox" name="platform" value="threads">
+                                    <span class="chip__check">
+                                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                                    </span>
+                                    <svg class="chip__icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017C1.5 8.418 2.35 5.564 3.995 3.513 5.845 1.209 8.598.028 12.179.004h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.592 12c.024 3.088.715 5.5 2.052 7.164 1.429 1.779 3.63 2.691 6.54 2.712h.004c2.589-.017 4.56-.764 5.862-2.222 1.07-1.198 1.632-2.774 1.67-4.683-.033-.82-.182-1.503-.443-2.043-.252-.52-.621-.926-1.095-1.204-.35 2.443-1.228 4.282-2.604 5.467-1.49 1.282-3.477 1.932-5.907 1.932-1.63 0-3.074-.408-4.172-1.18-1.238-.868-1.92-2.146-1.92-3.598 0-1.376.612-2.548 1.723-3.3.973-.657 2.284-1.005 3.793-1.005.65 0 1.326.065 2.013.193.024-1.467-.213-2.503-.712-3.104-.404-.487-1.039-.744-1.89-.766-.95.012-1.675.275-2.155.783-.369.39-.6.918-.69 1.572l-2.052-.348c.203-1.213.734-2.189 1.578-2.899.943-.793 2.183-1.196 3.687-1.196 1.56.029 2.768.537 3.592 1.511.755.892 1.129 2.264 1.114 4.08v.183c1.13.252 2.037.815 2.689 1.675.776 1.024 1.181 2.386 1.204 4.05-.048 2.425-.793 4.422-2.215 5.934-1.682 1.788-4.098 2.722-7.19 2.777zM9.088 14.18c-1.092 0-1.978.214-2.562.618-.514.354-.78.856-.78 1.49 0 .584.29 1.17.842 1.558.69.483 1.67.728 2.916.728 1.924 0 3.477-.47 4.616-1.398 1.009-.822 1.707-2.109 2.078-3.832-.54-.125-1.095-.215-1.66-.27-.618-.059-1.264-.089-1.924-.089l-.07.001c-.86.006-1.685.07-2.456.19-.37.058-.68.12-.938.192l-.062.018v-.005z"/></svg>
+                                    Threads
+                                </div>
+                                <div class="chip" data-platform="instagram">
+                                    <input type="checkbox" name="platform" value="instagram">
+                                    <span class="chip__check">
+                                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                                    </span>
+                                    <svg class="chip__icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                                    Instagram
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tone Selection -->
+                        <div class="form-group">
+                            <label class="form-label">Tone</label>
+                            <div class="tone-group" id="toneGroup">
+                                <div class="tone-option" data-tone="professional">
+                                    <input type="radio" name="tone" value="professional">
+                                    <span class="tone-option__emoji">&#128188;</span>
+                                    <span class="tone-option__label">Professional</span>
+                                    <span class="tone-option__desc">Clear & polished</span>
+                                </div>
+                                <div class="tone-option" data-tone="casual">
+                                    <input type="radio" name="tone" value="casual">
+                                    <span class="tone-option__emoji">&#9996;&#65039;</span>
+                                    <span class="tone-option__label">Casual</span>
+                                    <span class="tone-option__desc">Friendly & relaxed</span>
+                                </div>
+                                <div class="tone-option" data-tone="bold">
+                                    <input type="radio" name="tone" value="bold">
+                                    <span class="tone-option__emoji">&#128293;</span>
+                                    <span class="tone-option__label">Bold</span>
+                                    <span class="tone-option__desc">Punchy & direct</span>
+                                </div>
+                                <div class="tone-option" data-tone="witty">
+                                    <input type="radio" name="tone" value="witty">
+                                    <span class="tone-option__emoji">&#128526;</span>
+                                    <span class="tone-option__label">Witty</span>
+                                    <span class="tone-option__desc">Clever & fun</span>
+                                </div>
+                                <div class="tone-option" data-tone="inspiring">
+                                    <input type="radio" name="tone" value="inspiring">
+                                    <span class="tone-option__emoji">&#10024;</span>
+                                    <span class="tone-option__label">Inspiring</span>
+                                    <span class="tone-option__desc">Motivational</span>
+                                </div>
+                                <div class="tone-option" data-tone="educational">
+                                    <input type="radio" name="tone" value="educational">
+                                    <span class="tone-option__emoji">&#128218;</span>
+                                    <span class="tone-option__label">Educational</span>
+                                    <span class="tone-option__desc">Teach & inform</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Submit -->
+                        <div class="form-submit">
+                            <button type="submit" class="btn btn--primary btn--full btn--large" id="generateBtn">
+                                <span class="btn__text">Generate Posts</span>
+                                <div class="btn__spinner"></div>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- RIGHT: Output Panel -->
+            <div class="output-panel">
+                <div class="panel">
+                    <div class="panel__header">
+                        <div class="panel__icon panel__icon--output">&#10024;</div>
+                        <div>
+                            <div class="panel__title">Generated Posts</div>
+                            <div class="panel__subtitle">Ready to copy and publish</div>
+                        </div>
+                    </div>
+
+                    <!-- Empty State -->
+                    <div class="output-empty" id="outputEmpty">
+                        <div class="output-empty__illustration">&#127912;</div>
+                        <div class="output-empty__title">Your posts will appear here</div>
+                        <div class="output-empty__desc">
+                            Paste an article, choose your platforms and tone, then hit generate.
+                        </div>
+                    </div>
+
+                    <!-- Loading State -->
+                    <div class="output-loading" id="outputLoading">
+                        <div class="loading-dots">
+                            <div class="loading-dot"></div>
+                            <div class="loading-dot"></div>
+                            <div class="loading-dot"></div>
+                        </div>
+                        <div class="loading-text">Crafting your posts...</div>
+                    </div>
+
+                    <!-- Generated Cards -->
+                    <div class="output-cards" id="outputCards"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- FEATURES -->
+    <section class="features" id="features">
+        <div class="features__grid">
+            <div class="feature">
+                <span class="feature__icon">&#9889;</span>
+                <div class="feature__title">Instant Repurposing</div>
+                <div class="feature__desc">From 2,000-word article to platform-ready posts in under 10 seconds. No prompt engineering required.</div>
+            </div>
+            <div class="feature">
+                <span class="feature__icon">&#127912;</span>
+                <div class="feature__title">Tone-Aware</div>
+                <div class="feature__desc">Each post is crafted to match your chosen voice. Professional for LinkedIn, punchy for Twitter, visual for Instagram.</div>
+            </div>
+            <div class="feature">
+                <span class="feature__icon">&#128200;</span>
+                <div class="feature__title">Platform-Native</div>
+                <div class="feature__desc">Character limits, hashtag strategies, and formatting conventions are handled automatically for each platform.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p class="footer__text">
+            Made with <span class="footer__heart">&hearts;</span> for creators who'd rather create than reformat.
+        </p>
+    </footer>
+
+    <!-- TOAST -->
+    <div class="toast" id="toast">Copied to clipboard!</div>
+
+    <!-- CONFETTI CONTAINER -->
+    <div class="confetti-container" id="confettiContainer"></div>
+
+    <script>
+    /* ============================================================
+       REPURPOSE APP — Interactive Logic
+       ============================================================ */
+    (function() {
+        'use strict';
+
+        // ---- DOM References ----
+        const form = document.getElementById('repurposeForm');
+        const articleInput = document.getElementById('articleInput');
+        const charCount = document.getElementById('charCount');
+        const uploadZone = document.getElementById('uploadZone');
+        const fileInput = document.getElementById('fileInput');
+        const platformGroup = document.getElementById('platformGroup');
+        const toneGroup = document.getElementById('toneGroup');
+        const generateBtn = document.getElementById('generateBtn');
+        const outputEmpty = document.getElementById('outputEmpty');
+        const outputLoading = document.getElementById('outputLoading');
+        const outputCards = document.getElementById('outputCards');
+        const toast = document.getElementById('toast');
+        const confettiContainer = document.getElementById('confettiContainer');
+
+        // ---- State ----
+        let selectedPlatforms = new Set();
+        let selectedTone = '';
+
+        // ---- Character Counter ----
+        articleInput.addEventListener('input', function() {
+            const len = this.value.length;
+            const formatted = len.toLocaleString();
+            charCount.textContent = `${formatted} / 25,000`;
+            charCount.className = 'textarea-wrap__count';
+            if (len > 22000) charCount.classList.add('textarea-wrap__count--warn');
+            if (len > 25000) charCount.classList.add('textarea-wrap__count--over');
+        });
+
+        // ---- File Upload ----
+        uploadZone.addEventListener('click', () => fileInput.click());
+
+        uploadZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadZone.classList.add('is-dragging');
+        });
+
+        uploadZone.addEventListener('dragleave', () => {
+            uploadZone.classList.remove('is-dragging');
+        });
+
+        uploadZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadZone.classList.remove('is-dragging');
+            const file = e.dataTransfer.files[0];
+            if (file) handleFile(file);
+        });
+
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files[0]) handleFile(fileInput.files[0]);
+        });
+
+        function handleFile(file) {
+            if (file.size > 5 * 1024 * 1024) {
+                showToast('File too large. Max 5MB.');
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                articleInput.value = e.target.result;
+                articleInput.dispatchEvent(new Event('input'));
+                showToast('File loaded successfully!');
+            };
+            reader.readAsText(file);
+        }
+
+        // ---- Platform Chips ----
+        platformGroup.querySelectorAll('.chip').forEach(chip => {
+            chip.addEventListener('click', function(e) {
+                e.preventDefault();
+                const checkbox = this.querySelector('input');
+                const platform = this.dataset.platform;
+
+                if (this.classList.contains('is-active')) {
+                    this.classList.remove('is-active');
+                    selectedPlatforms.delete(platform);
+                    checkbox.checked = false;
+                } else {
+                    this.classList.add('is-active');
+                    selectedPlatforms.add(platform);
+                    checkbox.checked = true;
+                    // Micro-interaction: subtle scale bounce
+                    this.style.transform = 'translateY(-1px) scale(1.05)';
+                    setTimeout(() => { this.style.transform = 'translateY(-1px)'; }, 200);
+                }
+            });
+        });
+
+        // ---- Tone Selection ----
+        toneGroup.querySelectorAll('.tone-option').forEach(option => {
+            option.addEventListener('click', function(e) {
+                e.preventDefault();
+                toneGroup.querySelectorAll('.tone-option').forEach(o => o.classList.remove('is-active'));
+                this.classList.add('is-active');
+                selectedTone = this.dataset.tone;
+                this.querySelector('input').checked = true;
+            });
+        });
+
+        // ---- SAMPLE GENERATED CONTENT ----
+        const samplePosts = {
+            twitter: {
+                professional: `Most content creators spend 5+ hours repurposing a single article.\n\nThe math doesn't work.\n\nHere's a better framework:\n1. Write once with modular structure\n2. Extract key insights as standalone hooks\n3. Match format to platform norms\n4. Batch schedule across channels\n\nYour best ideas deserve wider reach.`,
+                casual: `okay but why are we all still manually rewriting our blog posts for every platform??\n\nthere has to be a better way\n\n(spoiler: there is, and it takes like 10 seconds now)\n\nyour long-form content is a goldmine. stop leaving it on the blog to collect dust.`,
+                bold: `Your articles are dying on your blog.\n\nHarsh? Maybe.\nTrue? Absolutely.\n\nOne long-form piece = 10+ social posts.\nBut most creators post once and move on.\n\nThat's not a content strategy.\nThat's a content graveyard.\n\nRepurpose or perish.`,
+                witty: `Writing a 2,000-word article and only posting it once is like cooking a feast and eating it alone in the dark.\n\nYour blog post called. It wants to be a Twitter thread, a LinkedIn carousel, and an Instagram caption.\n\nLet your content live its best multi-platform life.`,
+                inspiring: `Every article you write holds at least 10 ideas waiting to connect with someone new.\n\nDifferent people, different platforms, different moments.\n\nYour words have more reach than you think. The question isn't whether to repurpose\u2014it's why you haven't started yet.\n\nGive your ideas the audience they deserve.`,
+                educational: `Content Repurposing 101:\n\n\u2192 1 blog post = 3-5 Twitter posts\n\u2192 Pull stats for LinkedIn carousels\n\u2192 Extract quotes for Instagram\n\u2192 Turn lists into Threads\n\nThe key: adapt the FORMAT, not just the length.\n\nEach platform has its own language. Speak it.`
+            },
+            linkedin: {
+                professional: `I've been studying how top content creators maximize their reach.\n\nThe pattern is clear: they don't create more content. They repurpose smarter.\n\nHere's what I've learned:\n\nThe 1:10 Rule\nEvery long-form article should generate at least 10 derivative pieces of content. Not by copy-pasting\u2014by thoughtfully adapting insights to each platform's native format.\n\nThe three pillars of effective repurposing:\n\n\u2022 Extract\u2014Pull out standalone insights, stats, and stories\n\u2022 Adapt\u2014Reshape for each platform's expectations and audience\n\u2022 Schedule\u2014Space out distribution for maximum impact\n\nThe creators winning today aren't necessarily writing more.\nThey're distributing better.\n\nWhat's your content repurposing workflow look like?\n\n#ContentStrategy #CreatorEconomy #ContentMarketing`,
+                casual: `Real talk: I used to spend HOURS reformatting one article for different platforms.\n\nCopy from blog. Paste into doc. Rewrite for LinkedIn. Trim for Twitter. Rethink for Instagram.\n\nIt was exhausting. And honestly? I'd usually just... not do it.\n\nNow I treat every article like a content seed. One piece of deep thinking that branches into a dozen social posts.\n\nThe mindset shift that changed everything:\nStop thinking "I need to post on 5 platforms."\nStart thinking "I have 5 chances to connect with different people."\n\nSame ideas. Different packaging. Way more impact.`,
+                bold: `Unpopular opinion: Your content strategy is broken.\n\nYou're creating amazing long-form content and then... posting a link on LinkedIn with "New blog post!" as the caption.\n\nThat's not distribution. That's wishful thinking.\n\nHere's what actually works:\n\nTake your best article. Deconstruct it. Rebuild it natively for each platform.\n\nLinkedIn wants the story behind the insight.\nTwitter wants the sharpest takeaway.\nThreads wants the conversation starter.\n\nSame brain. Different delivery.\n\nStop creating more. Start distributing better.`,
+                witty: `Me in 2023: *writes 2,000-word article*\n*shares link on LinkedIn*\n*gets 47 impressions*\n"Content marketing doesn't work."\n\nMe now: *writes 2,000-word article*\n*turns it into 12 platform-native posts*\n*reaches 50,000+ people*\n"Oh."\n\nThe content wasn't the problem.\nThe distribution was.\n\nYour article is the raw material. Social posts are the finished product.\n\nDon't serve people ingredients. Serve them the meal.\n\n(And yes, this post was repurposed from a longer piece. Meta, I know.)`,
+                inspiring: `Every creator I admire has one thing in common.\n\nIt's not talent. It's not consistency. It's not even great ideas.\n\nIt's leverage.\n\nThey take one powerful idea and give it wings across every platform where their audience lives.\n\nA single article becomes a Twitter thread that sparks conversation.\nA LinkedIn post that builds authority.\nAn Instagram caption that moves someone to action.\n\nYour ideas are already good enough.\nThey just need more doors to walk through.\n\nThe best time to start repurposing was yesterday.\nThe second best time is your next publish.`,
+                educational: `Content Repurposing Framework (save this):\n\nStep 1: Audit Your Existing Content\nLook at your last 10 articles. Which got the most engagement? Those are your repurposing candidates.\n\nStep 2: Extract Modular Insights\nEvery article contains:\n\u2022 2-3 key statistics or data points\n\u2022 1-2 personal stories or examples\n\u2022 3-5 actionable takeaways\n\u2022 1 contrarian or surprising opinion\n\nStep 3: Match Format to Platform\n\u2022 Twitter \u2192 Sharp insight + thread potential\n\u2022 LinkedIn \u2192 Story + professional lesson\n\u2022 Threads \u2192 Conversational take\n\u2022 Instagram \u2192 Visual quote + carousel\n\nStep 4: Batch and Schedule\nCreate all variants in one session. Schedule across the week.\n\nResult: 1 article \u2192 12+ posts \u2192 10x reach.\n\n#ContentStrategy #Marketing`
+            },
+            threads: {
+                professional: `something I've been thinking about:\n\nwe all spend hours writing articles, but then only share them once.\n\nthat's like writing a book and only putting it in one library.\n\nthe smartest creators I know repurpose everything. one idea, ten formats, ten touchpoints.\n\nit's not about being everywhere. it's about meeting people where they already are.`,
+                casual: `petition to normalize repurposing your own content\n\nlike you spent 6 hours on that blog post. it deserves more than one sad tweet and a linkedin link.\n\nturn it into a thread. an IG carousel. a newsletter snippet.\n\nyour past self did the hard work. let your present self get the credit.`,
+                bold: `hot take: creating new content every day is a trap\n\nyou don't need 365 original ideas a year\n\nyou need 50 great ideas, repurposed 7 different ways\n\nthat's 350 pieces of content from half the effort\n\nwork smarter. post smarter.`,
+                witty: `me: *spends 8 hours on blog post*\nalso me: *shares it once and forgets it exists*\n\nmy content: am I a joke to you?\n\nstarting a support group for under-repurposed articles. first meeting is on all platforms simultaneously.`,
+                inspiring: `here's a thought that changed how I create:\n\nyour article doesn't reach everyone the first time. or the second. or the third.\n\nbut someone scrolling Threads today might need exactly the insight you wrote about last month.\n\nrepurposing isn't repetition. it's giving your ideas another chance to land.\n\nkeep sharing. keep reaching.`,
+                educational: `quick guide to repurposing (bookmark this):\n\n1. write your long-form piece first\n2. pull out the 3 strongest points\n3. each point = 1 social post\n4. adapt the language for each platform\n5. schedule across the week\n\nsame ideas, more reach, less burnout\n\nthat's it. that's the system.`
+            },
+            instagram: {
+                professional: `The 1:10 content rule.\n\nEvery long-form article you write contains at least 10 social media posts waiting to be extracted.\n\nThe key is learning to see your content as modular pieces, not monolithic blocks.\n\nSave this for your next content planning session.\n\n#ContentStrategy #ContentCreator #SocialMediaTips #CreatorEconomy #ContentRepurposing`,
+                casual: `raise your hand if you've ever spent hours on a blog post only to share it once and move on\n\n*raises both hands*\n\nbut here's the thing - that article is literally a goldmine of social content just waiting to be mined\n\nstart treating every article like a content tree, not a one-and-done\n\n#ContentCreation #BloggingTips #CreatorLife #ContentTips`,
+                bold: `Stop. Creating. New. Content. Every. Single. Day.\n\nYou already have everything you need.\n\nYour blog posts. Your newsletters. Your long-form pieces.\n\nThey're sitting there, full of insights that never got the audience they deserved.\n\nRepurpose relentlessly.\n\n#ContentMarketing #CreatorEconomy #MarketingStrategy #GrowthMindset`,
+                witty: `my content strategy used to be:\nwrite blog post \u2192 share link \u2192 pray\n\nmy content strategy now:\nwrite blog post \u2192 extract 10 posts \u2192 schedule everywhere \u2192 still pray but with better odds\n\nprogress.\n\n#ContentCreator #SocialMediaMarketing #CreatorTips #RealTalk`,
+                inspiring: `Your words have more reach than you realize.\n\nThat article you wrote last week? Someone on Instagram needs to hear it. Someone on LinkedIn would share it. Someone on Twitter would quote it.\n\nDon't let your best thinking live in just one place.\n\nGive it room to travel.\n\n#Inspiration #ContentCreator #CreativeMindset #WriteMore #ShareMore`,
+                educational: `Content Repurposing 101 \ud83d\udcda\n\nHere's exactly how to turn 1 article into 10+ posts:\n\n1\ufe0f\u20e3 Pull out key statistics \u2192 Twitter post\n2\ufe0f\u20e3 Extract a story \u2192 LinkedIn post\n3\ufe0f\u20e3 Summarize in 3 points \u2192 Carousel\n4\ufe0f\u20e3 Create a quote graphic \u2192 IG post\n5\ufe0f\u20e3 Write a hot take \u2192 Threads\n\nSave this for later.\n\n#ContentTips #SocialMediaStrategy #ContentRepurposing #LearnOnInstagram`
+            },
+            mastodon: {
+                professional: `Interesting pattern in content creation: the most effective creators aren't producing the most content. They're repurposing existing work across platforms.\n\nOne well-researched article can yield 10+ social posts when you adapt format and framing to each platform's norms.\n\nThe compounding effect is remarkable.`,
+                casual: `okay so I finally started repurposing my blog posts into social content instead of just dropping a link and hoping for the best\n\nand wow. the difference in engagement is... significant.\n\nshould've done this ages ago tbh`,
+                bold: `The "post and pray" strategy is dead.\n\nIf you're writing long-form content and only sharing it once, you're leaving 90% of its value on the table.\n\nOne article. Multiple formats. Maximum reach.\n\nThis is the way.`,
+                witty: `writing a 2000 word blog post and sharing it once is the content equivalent of cooking a three course meal and eating it standing over the kitchen sink\n\nyou deserve better. your content deserves better. we all deserve better.\n\nrepurpose your work, friends.`,
+                inspiring: `A thought for fellow creators:\n\nYour best ideas don't expire after one post. They evolve. They find new audiences. They land differently in different contexts.\n\nRepurposing isn't lazy. It's generous.\n\nYou're giving more people the chance to find value in your work.`,
+                educational: `Content repurposing basics:\n\n\u2192 Blog post key insight \u2192 Mastodon thread\n\u2192 Statistics and data \u2192 Short post with context\n\u2192 Personal anecdotes \u2192 Story-driven post\n\u2192 Action items \u2192 Numbered list post\n\nAdapt the format. Keep the substance.\n\nThe fediverse appreciates thoughtful content. Give your long-form work a second life here.`
+            }
+        };
+
+        const charLimits = {
+            twitter: 280,
+            linkedin: 3000,
+            threads: 500,
+            instagram: 2200,
+            mastodon: 500
+        };
+
+        const platformNames = {
+            twitter: 'X (Twitter)',
+            linkedin: 'LinkedIn',
+            threads: 'Threads',
+            instagram: 'Instagram',
+            mastodon: 'Mastodon'
+        };
+
+        // ---- Form Submission ----
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const text = articleInput.value.trim();
+            if (!text) {
+                articleInput.focus();
+                articleInput.style.borderColor = 'var(--coral-500)';
+                setTimeout(() => { articleInput.style.borderColor = ''; }, 1500);
+                return;
+            }
+            if (selectedPlatforms.size === 0) {
+                showToast('Pick at least one platform!');
+                return;
+            }
+            if (!selectedTone) {
+                showToast('Choose a tone first!');
+                return;
+            }
+
+            // Show loading
+            generateBtn.classList.add('is-loading');
+            outputEmpty.style.display = 'none';
+            outputCards.classList.remove('is-visible');
+            outputLoading.classList.add('is-visible');
+
+            // Simulate generation delay
+            const delay = 1200 + Math.random() * 800;
+            setTimeout(() => {
+                generatePosts();
+                generateBtn.classList.remove('is-loading');
+                outputLoading.classList.remove('is-visible');
+                burstConfetti();
+            }, delay);
+        });
+
+        function generatePosts() {
+            outputCards.innerHTML = '';
+            const platforms = Array.from(selectedPlatforms);
+
+            platforms.forEach((platform) => {
+                const content = samplePosts[platform]?.[selectedTone] || samplePosts[platform]?.casual || 'Generated content preview...';
+                const charLimit = charLimits[platform];
+                const charUsed = content.length;
+                const isOverLimit = charUsed > charLimit;
+
+                const card = document.createElement('div');
+                card.className = 'post-card';
+                card.innerHTML = `
+                    <div class="post-card__header">
+                        <div class="post-card__platform">
+                            <span class="post-card__platform-dot post-card__platform-dot--${platform}"></span>
+                            ${platformNames[platform]}
+                        </div>
+                        <div class="post-card__actions">
+                            <button class="post-card__action" data-action="copy" title="Copy to clipboard">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                            </button>
+                            <button class="post-card__action" data-action="refresh" title="Regenerate">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="post-card__body">
+                        <div class="post-card__content">${escapeHtml(content)}</div>
+                    </div>
+                    <div class="post-card__meta">
+                        <span class="post-card__char-count ${isOverLimit ? 'post-card__char-count--warn' : ''}">${charUsed.toLocaleString()} / ${charLimit.toLocaleString()} chars</span>
+                        <span class="post-card__tone-tag">${selectedTone}</span>
+                    </div>
+                `;
+
+                outputCards.appendChild(card);
+
+                // Wire up copy button
+                const copyBtn = card.querySelector('[data-action="copy"]');
+                copyBtn.addEventListener('click', () => {
+                    navigator.clipboard.writeText(content).then(() => {
+                        copyBtn.classList.add('is-copied');
+                        showToast('Copied to clipboard!');
+                        setTimeout(() => copyBtn.classList.remove('is-copied'), 2000);
+                    });
+                });
+
+                // Wire up refresh button (cycles through tones as a demo)
+                const refreshBtn = card.querySelector('[data-action="refresh"]');
+                refreshBtn.addEventListener('click', () => {
+                    const tones = Object.keys(samplePosts[platform]);
+                    const currentIdx = tones.indexOf(selectedTone);
+                    const nextTone = tones[(currentIdx + 1) % tones.length];
+                    const newContent = samplePosts[platform][nextTone];
+                    const contentEl = card.querySelector('.post-card__content');
+                    const countEl = card.querySelector('.post-card__char-count');
+                    const toneTag = card.querySelector('.post-card__tone-tag');
+
+                    // Animate out
+                    contentEl.style.opacity = '0';
+                    contentEl.style.transform = 'translateY(8px)';
+                    setTimeout(() => {
+                        contentEl.textContent = newContent;
+                        toneTag.textContent = nextTone;
+                        countEl.textContent = `${newContent.length.toLocaleString()} / ${charLimits[platform].toLocaleString()} chars`;
+                        countEl.className = 'post-card__char-count' + (newContent.length > charLimits[platform] ? ' post-card__char-count--warn' : '');
+                        contentEl.style.transition = 'opacity 0.3s, transform 0.3s';
+                        contentEl.style.opacity = '1';
+                        contentEl.style.transform = 'translateY(0)';
+                    }, 200);
+
+                    // Spin the refresh icon
+                    const svg = refreshBtn.querySelector('svg');
+                    svg.style.transition = 'transform 0.5s var(--ease-out)';
+                    svg.style.transform = 'rotate(360deg)';
+                    setTimeout(() => { svg.style.transition = 'none'; svg.style.transform = ''; }, 500);
+                });
+            });
+
+            outputCards.classList.add('is-visible');
+        }
+
+        // ---- Confetti ----
+        function burstConfetti() {
+            const colors = ['#F97066', '#FBBF24', '#8B5CF6', '#10B981', '#3B82F6', '#F472B6'];
+            const count = 40;
+
+            for (let i = 0; i < count; i++) {
+                const el = document.createElement('div');
+                el.className = 'confetti';
+                el.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                el.style.left = (40 + Math.random() * 20) + '%';
+                el.style.top = (30 + Math.random() * 10) + '%';
+                el.style.width = (4 + Math.random() * 6) + 'px';
+                el.style.height = (4 + Math.random() * 6) + 'px';
+                el.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+                confettiContainer.appendChild(el);
+
+                const angle = (Math.random() - 0.5) * 120;
+                const velocity = 200 + Math.random() * 300;
+                const vx = Math.sin(angle * Math.PI / 180) * velocity;
+                const vy = -Math.cos(angle * Math.PI / 180) * velocity;
+                const rotation = Math.random() * 720 - 360;
+
+                el.animate([
+                    { opacity: 1, transform: 'translate(0, 0) rotate(0deg)' },
+                    { opacity: 0, transform: `translate(${vx}px, ${vy + 400}px) rotate(${rotation}deg)` }
+                ], {
+                    duration: 1000 + Math.random() * 500,
+                    easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                    fill: 'forwards',
+                    delay: Math.random() * 100
+                }).onfinish = () => el.remove();
+            }
+        }
+
+        // ---- Toast ----
+        let toastTimer;
+        function showToast(message) {
+            toast.textContent = message;
+            toast.classList.add('is-visible');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => toast.classList.remove('is-visible'), 2500);
+        }
+
+        // ---- Utility ----
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // ---- Scroll reveal for features ----
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.feature').forEach((el, i) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(24px)';
+            el.style.transition = `opacity 0.5s var(--ease-out) ${i * 0.1}s, transform 0.5s var(--ease-out) ${i * 0.1}s`;
+            observer.observe(el);
+        });
+
+    })();
+    </script>
+</body>
+</html>

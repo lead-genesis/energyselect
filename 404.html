@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Not Found — EnergySelect</title>
+  <meta name="description" content="The page you're looking for doesn't exist. Head back to EnergySelect to get your free solar savings estimate.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-ink: #0a0a0a;
+      --color-paper: #f4f1eb;
+      --color-muted: #8a8578;
+      --color-accent: #c43d2e;
+
+      --font-display: 'Instrument Serif', Georgia, serif;
+      --font-body: 'DM Sans', -apple-system, sans-serif;
+
+      --space-unit: clamp(1rem, 2.5vw, 1.5rem);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--color-paper);
+      color: var(--color-ink);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: var(--space-unit);
+      overflow: hidden;
+      cursor: crosshair;
+    }
+
+    /* The giant 404 — it IS the page */
+    .error-number {
+      font-family: var(--font-display);
+      font-size: clamp(8rem, 25vw, 20rem);
+      line-height: 0.85;
+      font-style: italic;
+      color: var(--color-ink);
+      position: relative;
+      user-select: none;
+      transition: color 0.6s ease;
+    }
+
+    .error-number::after {
+      content: '404';
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: var(--color-accent);
+      clip-path: inset(0 100% 0 0);
+      transition: clip-path 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    body:hover .error-number::after {
+      clip-path: inset(0 0 0 0);
+    }
+
+    /* Message */
+    .message {
+      text-align: center;
+      margin-top: calc(var(--space-unit) * 2);
+      max-width: 32ch;
+    }
+
+    .message h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.25rem, 3vw, 1.75rem);
+      font-weight: 400;
+      margin-bottom: calc(var(--space-unit) * 0.75);
+      line-height: 1.3;
+    }
+
+    .message p {
+      font-size: 0.9rem;
+      color: var(--color-muted);
+      line-height: 1.6;
+      margin-bottom: calc(var(--space-unit) * 1.5);
+    }
+
+    /* The link — understated, confident */
+    .back-link {
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--color-ink);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.75rem 0;
+      position: relative;
+    }
+
+    .back-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0.5rem;
+      left: 0;
+      width: 100%;
+      height: 1.5px;
+      background: var(--color-accent);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .back-link:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    /* Floating dot — follows cursor lazily */
+    .dot {
+      width: 12px;
+      height: 12px;
+      background: var(--color-accent);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 10;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      mix-blend-mode: multiply;
+    }
+
+    body:hover .dot {
+      opacity: 1;
+    }
+
+    /* Corner mark — subtle agency branding moment */
+    .corner-mark {
+      position: fixed;
+      bottom: var(--space-unit);
+      right: var(--space-unit);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+    }
+
+    @media (max-width: 480px) {
+      .corner-mark { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="dot" id="dot"></div>
+
+  <div class="error-number">404</div>
+
+  <div class="message">
+    <h2>This page wandered off.</h2>
+    <p>It happens. Even to the best ideas. Let's get you back to the work that matters.</p>
+    <a href="/" class="back-link">Back to home</a>
+  </div>
+
+  <div class="corner-mark">Studio &mdash; est. 2019</div>
+
+  <script>
+    const dot = document.getElementById('dot');
+    let dotX = 0, dotY = 0;
+    let mouseX = 0, mouseY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX - 6;
+      mouseY = e.clientY - 6;
+    });
+
+    function animate() {
+      // Lazy follow — the dot trails behind with weight
+      dotX += (mouseX - dotX) * 0.08;
+      dotY += (mouseY - dotY) * 0.08;
+      dot.style.transform = `translate(${dotX}px, ${dotY}px)`;
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  </script>
+</body>
+</html>

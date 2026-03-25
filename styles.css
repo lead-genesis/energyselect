@@ -118,33 +118,32 @@ input,select{font-family:inherit}
 .nav__burger span{display:block;height:1.5px;background:var(--dark-700);border-radius:1px;transition:transform .3s,opacity .3s}
 
 /* ================================================================
-   HERO — dramatic dark with blue overlay
+   HERO — full-bleed photo with blue gradient overlay
    ================================================================ */
 .hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden}
 .hero__bg{position:absolute;inset:0;z-index:0}
 .hero__bg-image{
     position:absolute;inset:0;
-    background:
-        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900"><defs><linearGradient id="sky" x1="0" y1="0" x2="1" y2="1"><stop offset="0%25" stop-color="%230c1929"/><stop offset="40%25" stop-color="%23102040"/><stop offset="100%25" stop-color="%230a1525"/></linearGradient></defs><rect fill="url(%23sky)" width="1440" height="900"/></svg>') center/cover;
+    background:url('assets/hero-bg.jpg') center/cover no-repeat;
 }
 .hero__bg-overlay{
     position:absolute;inset:0;
     background:
-        radial-gradient(ellipse 100% 80% at 25% 50%, rgba(37,99,235,.18) 0%, transparent 60%),
-        radial-gradient(ellipse 60% 70% at 75% 30%, rgba(59,130,246,.12) 0%, transparent 50%),
-        radial-gradient(ellipse 40% 50% at 50% 100%, rgba(16,185,129,.06) 0%, transparent 40%),
-        linear-gradient(180deg, rgba(2,6,23,.3) 0%, rgba(15,23,42,.95) 100%);
+        linear-gradient(135deg, rgba(29,78,216,.80) 0%, rgba(15,23,42,.88) 100%);
 }
 .hero__bg-noise{
-    position:absolute;inset:0;opacity:.06;
+    position:absolute;inset:0;opacity:.04;
     background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 .hero__inner{
     position:relative;z-index:1;
-    max-width:var(--max-w);margin:0 auto;padding:calc(var(--nav-h) + 48px) 24px 0;
-    display:flex;align-items:flex-end;gap:48px;width:100%;
+    max-width:720px;margin:0 auto;padding:calc(var(--nav-h) + 80px) 24px 96px;
+    display:flex;flex-direction:column;align-items:flex-start;width:100%;
 }
-.hero__content{flex:1;min-width:0;padding-bottom:64px}
+.hero__content{width:100%;text-align:center}
+.hero__subtitle{margin-left:auto;margin-right:auto}
+.hero__ctas{justify-content:center}
+.hero__proof{justify-content:center}
 .hero__badge{
     display:inline-flex;align-items:center;gap:7px;
     padding:6px 14px;border-radius:100px;
@@ -173,29 +172,15 @@ input,select{font-family:inherit}
 .hero__proof-text{display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(255,255,255,.45);font-weight:500}
 .hero__stars{color:var(--amber);font-size:12px;letter-spacing:2px}
 
-/* HERO VISUAL */
-.hero__visual{flex:0 0 420px;display:flex;justify-content:center;align-items:flex-end}
-.hero__person-wrapper{position:relative;display:flex;justify-content:center;align-items:flex-end;padding:0 30px}
-.hero__person-wrapper::before{
-    content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);
-    width:340px;height:340px;border-radius:50%;
-    background:radial-gradient(circle,rgba(59,130,246,.15) 0%,transparent 70%);z-index:0;
-}
-.hero__person-img{width:380px;height:auto;object-fit:contain;position:relative;z-index:1;filter:drop-shadow(0 20px 40px rgba(0,0,0,.3))}
-
-/* floating card */
+/* ================================================================
+   SAVINGS CARD — moved to stats section
+   ================================================================ */
 .hero__card{
     background:rgba(255,255,255,.95);backdrop-filter:blur(20px);
     border-radius:var(--radius);padding:16px 18px;
     box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.1);
     border:1px solid rgba(255,255,255,.8);
 }
-.hero__card--floating{
-    position:absolute;bottom:8px;left:50%;transform:translateX(-50%);
-    width:260px;z-index:2;
-    animation:float-card 5s ease-in-out infinite;
-}
-@keyframes float-card{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-5px)}}
 .hero__card-header{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--gray-500);margin-bottom:8px}
 .hero__card-icon{font-size:16px}
 .hero__card-amount{display:flex;align-items:baseline;margin-bottom:2px}
@@ -207,30 +192,33 @@ input,select{font-family:inherit}
 .hero__card-bar-labels{display:flex;justify-content:space-between;font-size:10px;color:var(--gray-400)}
 .hero__card-bar-saved{color:var(--green);font-weight:700}
 
-/* floating pills */
-.hero__pill{
-    position:absolute;display:flex;align-items:center;gap:5px;z-index:3;
-    background:rgba(255,255,255,.92);backdrop-filter:blur(12px);
-    padding:7px 14px;border-radius:100px;
-    font-size:12px;font-weight:600;color:var(--dark-900);
-    box-shadow:0 2px 12px rgba(0,0,0,.12);
-    white-space:nowrap;border:1px solid rgba(255,255,255,.6);
-}
-.hero__pill svg{color:var(--green)}
-.hero__pill strong{color:var(--blue-500)}
-.hero__pill--tl{top:8%;right:0;animation:float-a 4s ease-in-out infinite}
-.hero__pill--br{bottom:30%;left:-16px;animation:float-b 4.5s ease-in-out infinite}
-@keyframes float-a{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
-@keyframes float-b{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
-
 /* ================================================================
    STATS
    ================================================================ */
-.stats{padding:48px 0;border-bottom:1px solid var(--gray-200)}
-.stats__inner{max-width:var(--max-w);margin:0 auto;padding:0 24px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
-.stats__item{text-align:center;padding:12px 0}
-.stats__number{font-size:clamp(28px,3.5vw,40px);font-weight:800;color:var(--dark-900);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
-.stats__label{font-size:13px;color:var(--gray-500);margin-top:2px;font-weight:500}
+.stats{padding:56px 0;background:var(--gray-100);border-bottom:1px solid var(--gray-200)}
+.stats__inner{max-width:var(--max-w);margin:0 auto;padding:0 24px}
+.stats__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.stats__item{
+    text-align:center;padding:28px 16px;
+    background:var(--white);border-radius:var(--radius);
+    border:1.5px solid var(--gray-200);
+    transition:transform .3s var(--ease),box-shadow .3s;
+}
+.stats__item:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.04)}
+.stats__number{font-size:clamp(28px,3.5vw,40px);font-weight:800;color:var(--blue-600);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.stats__label{font-size:13px;color:var(--gray-500);margin-top:4px;font-weight:500}
+
+/* ---- Stats trust badges ---- */
+.stats__trust{display:flex;justify-content:center;gap:24px;margin-bottom:28px}
+.stats__trust-item{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--dark-800);background:var(--white);padding:10px 18px;border-radius:100px;border:1.5px solid var(--gray-200)}
+.stats__trust-check{color:var(--green);font-weight:700;font-size:16px}
+
+/* ---- Stats rebate sub-element ---- */
+.stats__item--savings{grid-column:span 1}
+.stats__rebate{margin-top:12px;padding-top:12px;border-top:1px solid var(--gray-200)}
+.stats__rebate-amount{font-size:22px;font-weight:800;color:var(--green);letter-spacing:-.02em}
+.stats__rebate-label{font-size:12px;color:var(--gray-500);font-weight:600;margin-top:2px}
+.stats__rebate-note{font-size:11px;color:var(--gray-400);margin-top:2px}
 
 /* ================================================================
    SECTION HEADERS
@@ -421,6 +409,16 @@ input,select{font-family:inherit}
 .calculator-form__field select:focus{border-color:var(--blue-400);background:rgba(255,255,255,.09)}
 .calculator-form__disclaimer{font-size:12px;color:rgba(255,255,255,.3);margin-top:10px;text-align:center}
 
+/* ---- Quote options (tabular Solar / Battery) ---- */
+.calculator-cta__content--centered{grid-template-columns:1fr;text-align:center}
+.calculator-cta__text--full{max-width:680px;margin:0 auto}
+.quote-options{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}
+.quote-option{background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.1);border-radius:var(--radius-lg);padding:28px;text-align:center;transition:border-color .3s,transform .3s var(--ease)}
+.quote-option:hover{border-color:rgba(59,130,246,.3);transform:translateY(-2px)}
+.quote-option__icon{font-size:36px;margin-bottom:12px}
+.quote-option__title{font-size:18px;font-weight:700;color:var(--white);margin-bottom:8px}
+.quote-option__desc{font-size:14px;color:rgba(255,255,255,.45);line-height:1.7;margin-bottom:18px}
+
 /* ================================================================
    TESTIMONIALS
    ================================================================ */
@@ -497,17 +495,6 @@ input,select{font-family:inherit}
    RESPONSIVE
    ================================================================ */
 @media(max-width:1024px){
-    .hero__inner{flex-direction:column;text-align:center;padding-top:calc(var(--nav-h) + 40px);padding-bottom:0;min-height:auto}
-    .hero__content{padding-bottom:32px}
-    .hero__subtitle{margin-left:auto;margin-right:auto}
-    .hero__ctas{justify-content:center}
-    .hero__proof{justify-content:center}
-    .hero__visual{flex:0 0 auto;width:100%;max-width:380px;margin:0 auto}
-    .hero__person-wrapper{padding:0 16px}
-    .hero__person-img{width:320px}
-    .hero__pill--tl{right:-8px}
-    .hero__pill--br{left:-8px}
-    .hero__card--floating{width:240px}
     .faq__layout{grid-template-columns:1fr;gap:32px}
     .faq__header{position:static;text-align:center}
     .faq__header .section__header{text-align:center}
@@ -523,15 +510,15 @@ input,select{font-family:inherit}
         box-shadow:0 8px 24px rgba(0,0,0,.06);z-index:99;
     }
     .savings__grid,.benefits__grid,.testimonials__grid,.rebates__grid{grid-template-columns:1fr;max-width:440px;margin-left:auto;margin-right:auto}
+    .stats__trust{flex-direction:column;align-items:center;gap:8px}
+    .quote-options{grid-template-columns:1fr}
     .step{padding:20px}
     .calculator-form__grid{grid-template-columns:1fr}
     .footer__top{flex-direction:column;gap:32px}
     .footer__links{flex-wrap:wrap;gap:28px}
-    .stats__inner{grid-template-columns:repeat(2,1fr);gap:16px}
+    .stats__grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:480px){
     .hero__title{font-size:34px}
-    .hero__person-img{width:240px}
-    .hero__card--floating{width:220px}
     .calculator-cta__content{padding:24px}
 }

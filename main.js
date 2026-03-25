@@ -40,20 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }));
     }
 
-    // ---- HERO COUNTER ----
-    const counterEl = document.getElementById('savingsCounter');
-    const savingsBar = document.getElementById('savingsBar');
-    if (counterEl) {
-        let done = false;
-        new IntersectionObserver(([e]) => {
-            if (e.isIntersecting && !done) {
-                done = true;
-                animateValue(counterEl, 0, 2847, 1800);
-                if (savingsBar) setTimeout(() => savingsBar.style.width = '78%', 300);
-            }
-        }, { threshold: 0.3 }).observe(counterEl);
-    }
-
     // ---- STAT COUNTERS ----
     document.querySelectorAll('[data-count]').forEach(el => {
         new IntersectionObserver(([e]) => {
